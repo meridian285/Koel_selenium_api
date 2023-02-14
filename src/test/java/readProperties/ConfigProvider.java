@@ -3,6 +3,9 @@ package readProperties;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
+/**
+   Интерфейс для взаимодействия с файлом application.conf
+ */
 public interface ConfigProvider {
 //    Config config = readConfig();
 
@@ -11,9 +14,7 @@ public interface ConfigProvider {
                 ? ConfigFactory.load(ConfigFactory.systemProperties().getString("testProfile"))
                 : ConfigFactory.load("application.conf");
     }
-
     String URL = readConfig().getString("url");
-    Integer AGE = readConfig().getInt("age");
     String USER_LOGIN = readConfig().getString("userParams.user.login");
     String USER_PASSWORD = readConfig().getString("userParams.user.password");
 }
