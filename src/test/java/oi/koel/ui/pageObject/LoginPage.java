@@ -20,22 +20,24 @@ public class LoginPage extends BasePage {
     //Локатор кнопки Login
     @FindBy(xpath = ".//button[text() = 'Log In']")
     private WebElement loginButton;
-    //Локатор проверки что страница загрузилась
-    @FindBy(xpath = "//*[@class='music']")
-    private WebElement youMusic;
+    //Локатор для ссылки Registration
+    @FindBy(id = "hel")
+    private WebElement registrationLink;
 
     public LoginPage() {
         driver.get(ConfigProvider.URL);
         PageFactory.initElements(driver, this);
     }
-    //Метод логина
-    public void createTicket(String email, String password){
+    //Метод авторизации
+    public MainPage createTicket(String email, String password){
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
         loginButton.click();
+        return new MainPage();
     }
-    //Проверка загрузки страницы
-    public void checkLoadMainPage(){
-        Assert.assertTrue(youMusic.isDisplayed());
+    //Метод нажатия на ссылку Регистрация
+    public RegistrationPage clickRegistrationLink(){
+        registrationLink.click();
+        return new RegistrationPage();
     }
 }
